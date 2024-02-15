@@ -1,3 +1,5 @@
+import 'package:basic_first_app/pages/first.dart';
+import 'package:basic_first_app/pages/second.dart';
 import 'package:flutter/material.dart';
 
 void main() {
@@ -13,7 +15,7 @@ class MyApp extends StatelessWidget {
       title: 'Flutter Demo',
       theme: ThemeData(
         colorScheme: ColorScheme.fromSeed(
-          seedColor: Color.fromARGB(255, 182, 65, 15),
+          seedColor: const Color.fromARGB(255, 182, 65, 15),
         ),
         appBarTheme: const AppBarTheme(
           backgroundColor: Color.fromARGB(255, 182, 65, 15),
@@ -33,7 +35,6 @@ class MyHomePage extends StatefulWidget {
 }
 
 class _MyHomePageState extends State<MyHomePage> {
-
   // Initialize the switch to false
   bool _toggled = false;
 
@@ -75,6 +76,33 @@ class _MyHomePageState extends State<MyHomePage> {
                   // Respond to button press
                 },
                 child: const Text('Submit'),
+              ),
+            ),
+
+            // _____ADDS A BUTTON TO NAVIGATE TO THE NEXT PAGE
+
+            Padding(
+              padding: const EdgeInsets.all(8.0),
+              child: ElevatedButton(
+                onPressed: () {
+                  Navigator.of(context).push(
+                    MaterialPageRoute(builder: (context) => const FirstPage()), // Must remember to import the FirstPage class
+                  );
+                },
+                child: const Text('Simple: Next Page'),
+              ),
+            ),
+
+            // _____ADDS A BUTTON TO NAVIGATE TO THE NEXT PAGE, But removes the `.of(context)`
+            Padding(
+              padding: const EdgeInsets.all(8.0),
+              child: ElevatedButton(
+                onPressed: () {
+                  Navigator.push(context, 
+                    MaterialPageRoute(builder: (context) => const SecondPage()), // Must remember to import the SecondPage class
+                  );
+                },
+                child: const Text('Simpler: Second Page'),
               ),
             ),
           ],
